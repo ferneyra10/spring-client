@@ -64,8 +64,7 @@ pipeline {
                                   "--build-env=\'JAVA_APP_JAR=hello.jar\'")
                               .narrow('svc')
                               .expose("--name=springclient  --generator=\'route/v1\'  --path=/hello")
-                  openshift.create( 'route', 'edge  springclient-edge --service=springclient --insecure-policy=Redirect' )
-                              
+                              .create( 'route', 'edge  springclient-edge --service=springclient --insecure-policy=Redirect' )                                                                                        
               }
 
               timeout(5) { 
