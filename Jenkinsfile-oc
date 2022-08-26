@@ -63,7 +63,7 @@ pipeline {
                                   "--allow-missing-images", 
                                   "--build-env=\'JAVA_APP_JAR=hello.jar\'")
                               .narrow('svc')
-                              .expose("edge -insecure-policy=Redirect")
+                              .expose("edge --insecure-policy=Redirect")
               }
 
               timeout(5) { 
