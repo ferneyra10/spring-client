@@ -63,7 +63,7 @@ pipeline {
                                   "--allow-missing-images", 
                                   "--build-env=\'JAVA_APP_JAR=hello.jar\'")
                               .narrow('svc')
-                              .expose("--name=springclient2  --generator=\'service/v2\'")
+                              .expose("--name=springclient2  --generator=\'route/v1\'")
               }
 
               timeout(5) { 
