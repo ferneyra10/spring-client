@@ -22,11 +22,7 @@ pipeline {
         echo 'Build jar file'
         script {
           sh 'echo CompilandoProyecto'
-          maven {
-            goals('clean')
-            goals('package')
-            properties skipTests: true
-          }
+          sh 'mvn clean package install'
         }
       }
     }
