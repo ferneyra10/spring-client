@@ -24,7 +24,7 @@ pipeline {
         echo 'Build jar file'
         script {
           sh 'echo CompilandoProyecto'
-          sh 'ls'
+          sh 'mvn clean install'
         }
       }
     }
@@ -32,7 +32,7 @@ pipeline {
       steps {
         echo 'Run unit tests'
         script {
-           sh 'ls'
+           sh 'mvn test'
         }
       }
     }
