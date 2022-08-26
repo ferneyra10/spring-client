@@ -24,7 +24,7 @@ pipeline {
         echo 'Build jar file'
         script {
           sh 'echo CompilandoProyecto'
-          sh 'mvn clean package install'
+          sh 'ls'
         }
       }
     }
@@ -32,7 +32,7 @@ pipeline {
       steps {
         echo 'Run unit tests'
         script {
-           sh 'mvn test'
+           sh 'ls'
         }
       }
     }
@@ -64,7 +64,7 @@ pipeline {
                                   "--build-env=\'JAVA_APP_JAR=hello.jar\'")
                               .narrow('svc')
                               .expose("--name=springclient  --generator=\'route/v1\'  --path=/hello")
-                  openshift.create( 'route', 'edge  springclient-edge --service=springclient3 --insecure-policy=Redirect' )
+                  openshift.create( 'route', 'edge  springclient-edge --service=springclient --insecure-policy=Redirect' )
                               
               }
 
