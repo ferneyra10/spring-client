@@ -57,7 +57,26 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject("${env.PROJECT}") {
-              openshift.newApp('registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.6~https://github.com/ferneyra10/spring-client', "--as-deployment-config", "--name=springclient", "--strategy=source", "--allow-missing-images", "--build-env=\'JAVA_APP_JAR=hello.jar\'").narrow('svc').expose()
+                         
+            
+                 def deployment = openshift.selector("dc", "springclient")
+
+              if(!deployment.exists()){
+                 openshift.newApp('registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.6~https://github.com/ferneyra10/spring-client', "--as-deployment-config", "--name=springclient", "--strategy=source", "--allow-missing-images", "--build-env=\'JAVA_APP_JAR=hello.jar\'").narrow('svc').expose()
+              }
+
+              timeout(5) { 
+                openshift.selector("dc", "springclient").related('pods').untilEach(1) {
+                  return (it.object().status.phase == "Running")
+                  }
+                }
+            
+            
+            
+            
+            
+            
+            
             }
           }
         }
