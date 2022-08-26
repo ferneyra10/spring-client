@@ -21,9 +21,10 @@ pipeline {
       steps {
         echo 'Build jar file'
         script {
+          sh 'echo CompilandoProyecto'
           maven {
             goals('clean')
-            goals('install')
+            goals('package')
             properties skipTests: true
           }
         }
