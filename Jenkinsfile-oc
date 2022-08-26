@@ -63,7 +63,7 @@ pipeline {
                                   "--allow-missing-images", 
                                   "--build-env=\'JAVA_APP_JAR=hello.jar\'")
                               .narrow('svc')
-                              .expose("--name=springclient  --generator=\'route/v1\'  --path=/hello")
+                              .expose("--name=springclient  --generator=\'route/v1\'")
                               openshift.create( 'route', 'edge  springclient-edge',  '--service=springclient', '--insecure-policy=Redirect', '--path=/hello' )                                                                                        
               }
 
