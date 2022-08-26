@@ -63,7 +63,7 @@ pipeline {
                                   "--allow-missing-images", 
                                   "--build-env=\'JAVA_APP_JAR=hello.jar\'")
                               .narrow('svc')
-                              .expose("--generator="service/v2"")
+                              .expose("--generator=\'service/v2\'")
               }
 
               timeout(5) { 
