@@ -5,6 +5,8 @@ pipeline {
   environment {
     PROJECT = 'ops-dev-dev'
   }   
+ 
+  
   stages {
     stage('Preamble') {
       steps {
@@ -30,9 +32,7 @@ pipeline {
       steps {
         echo 'Run unit tests'
         script {
-          maven {
-            goals('test')
-          }
+           sh 'mvn test'
         }
       }
     }
